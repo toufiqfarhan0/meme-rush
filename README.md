@@ -103,3 +103,22 @@ Contributions, issues, and feature requests are welcome! Feel free to check out 
 ## 📄 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
+
+## 🔊 Meme audio bank
+
+The reusable soundboard lives in `src/components/audio/MemeSoundboard.tsx`. It preloads each clip with the browser's native audio API, supports one-click preview/stop, and lets users add their own HTTP(S) MP3 URLs at runtime.
+
+```tsx
+import { MemeSoundboard } from '@/components/audio';
+
+<MemeSoundboard
+  selectedSoundId={soundId}
+  onSelect={(sound) => setSoundId(sound.id)}
+  sounds={[
+    // Optional: add or replace any starter clip by id.
+    { id: 'my-local-clip', name: 'Air horn', description: 'Custom', category: 'impact', source: 'custom', url: '/audio/air-horn.mp3' },
+  ]}
+/>
+```
+
+Starter clips use MyInstants URLs and are intentionally data-only. For production, replace them with assets you are licensed to distribute (for example `/public/audio/*.mp3` or a licensed CDN) via `createMemeSoundBank` / the `sounds` prop.
