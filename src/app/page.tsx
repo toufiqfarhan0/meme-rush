@@ -17,6 +17,15 @@ const MemeCanvas = dynamic(() => import('@/components/canvas/MemeCanvas'), {
   ),
 });
 
+const BikeTrackCanvas = dynamic(() => import('@/components/canvas/BikeTrackCanvas'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[480px] flex items-center justify-center bg-zinc-900/60 rounded-2xl border border-white/10">
+      <span className="text-sm text-cyan-400 font-mono animate-pulse">Loading 3D Bike Track Engine...</span>
+    </div>
+  ),
+});
+
 export default function Home() {
   const [battleVotes, setBattleVotes] = useState({ left: 1420, right: 980 });
   const [votedSide, setVotedSide] = useState<'left' | 'right' | null>(null);
@@ -108,6 +117,24 @@ export default function Home() {
         <div className="lg:col-span-6 h-[420px] w-full">
           <MemeCanvas />
         </div>
+      </section>
+
+      {/* 3D BIKE CONTROLLER & ENDLESS TRACK SHOWCASE */}
+      <section id="bike-track" className="space-y-6 pt-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-b border-white/10 pb-4">
+          <div>
+            <div className="flex items-center gap-2 text-cyan-400 font-mono text-xs font-semibold uppercase tracking-wider mb-1">
+              <Zap className="w-4 h-4 text-cyan-400 animate-pulse" /> 3D WebGL Track Simulator
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">3D Cyber Bike Controller & Endless Track</h2>
+          </div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-mono">
+            <span className="w-2 h-2 rounded-full bg-purple-400 animate-ping" />
+            STEER WITH A/D OR ARROW KEYS
+          </div>
+        </div>
+
+        <BikeTrackCanvas />
       </section>
 
       {/* FEATURED BATTLE ARENA SCAFFOLD */}
