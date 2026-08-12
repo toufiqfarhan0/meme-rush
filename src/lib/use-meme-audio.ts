@@ -12,7 +12,7 @@ function errorMessage(error: unknown) {
 /** Native-audio player with eager preloading and a single active preview. */
 export function useMemeAudio(sounds: readonly MemeSound[], preload = true) {
   const cache = useRef<AudioCache>(new Map());
-  const activeId = useRef<string>();
+  const activeId = useRef<string | undefined>(undefined);
   const [statuses, setStatuses] = useState<Record<string, SoundLoadStatus>>({});
   const [playingId, setPlayingId] = useState<string>();
 
