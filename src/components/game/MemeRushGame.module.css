@@ -1,0 +1,44 @@
+.game {
+  width: min(100%, 680px);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(129, 140, 248, .45);
+  border-radius: 22px;
+  color: #f8fafc;
+  background: #111827;
+  box-shadow: 0 22px 50px rgba(30, 41, 59, .38);
+  font-family: Arial, sans-serif;
+}
+
+.hud { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; background: #18112b; }
+.hud div { display: grid; gap: 3px; }
+.hud span { font-size: 11px; font-weight: 800; color: #c4b5fd; letter-spacing: .1em; text-transform: uppercase; }
+.hud strong { font-size: 23px; line-height: 1; }
+.strikes { text-align: right; }
+.strikes strong { display: flex; gap: 5px; justify-content: end; color: #4b5563; }
+.strikes i { font-size: 18px; font-style: normal; }
+.strikes .activeStrike { color: #fb7185; text-shadow: 0 0 12px #e11d48; }
+
+.track { position: relative; isolation: isolate; min-height: 420px; overflow: hidden; background: radial-gradient(ellipse at center top, #534a94 0%, #242345 24%, #12182b 66%, #0b1120 100%); }
+.track::before, .track::after { content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; width: 22%; background: repeating-linear-gradient(135deg, #20384b 0 14px, #1a2f40 14px 28px); }
+.track::before { left: 0; clip-path: polygon(0 0, 42% 0, 100% 100%, 0 100%); }
+.track::after { right: 0; clip-path: polygon(58% 0, 100% 0, 100% 100%, 0 100%); }
+.roadLines { position: absolute; z-index: -1; inset: 0 28%; background: repeating-linear-gradient(to bottom, transparent 0 32px, rgba(255,255,255,.42) 32px 54px, transparent 54px 103px); background-size: 12px 103px; background-repeat: repeat-y; background-position: center top; opacity: .65; }
+
+.pickup { position: absolute; top: var(--pickup-y); left: var(--pickup-x); width: 48px; height: 48px; transform: translate(-50%, -50%); display: grid; place-items: center; border-radius: 50%; border: 2px solid #fef08a; background: linear-gradient(145deg, #fbbf24, #f97316); box-shadow: 0 0 0 5px rgba(250, 204, 21, .18), 0 0 24px #fbbf24; animation: pulse 650ms ease-in-out infinite alternate; }
+.pickup span { font-size: 27px; filter: drop-shadow(0 1px 1px #78350f); }
+.bike { position: absolute; bottom: 34px; transform: translateX(-50%); font-size: 54px; line-height: 1; filter: drop-shadow(0 7px 5px rgba(0, 0, 0, .55)); transition: left 130ms ease-out; }
+
+.startButton, .gameOver button { border: 0; border-radius: 999px; padding: 13px 24px; font: inherit; font-weight: 800; color: #1e1b4b; background: #fef08a; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,.25); }
+.startButton { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.gameOver { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 10px; padding: 20px; text-align: center; background: rgba(15, 23, 42, .82); backdrop-filter: blur(4px); }
+.gameOver p { margin: 0; font-size: 38px; font-weight: 900; color: #fb7185; letter-spacing: .06em; }
+.gameOver span { margin-bottom: 8px; color: #e2e8f0; }
+
+.controls { display: grid; grid-template-columns: 50px 1fr 50px; gap: 12px; align-items: center; min-height: 65px; padding: 9px 14px; background: #0f172a; }
+.controls p { margin: 0; text-align: center; font-size: 13px; color: #cbd5e1; }
+.controls button { width: 43px; height: 40px; border: 1px solid #818cf8; border-radius: 10px; color: white; background: #3730a3; font-size: 24px; cursor: pointer; }
+.controls button:disabled { cursor: not-allowed; opacity: .4; }
+
+@keyframes pulse { to { transform: translate(-50%, -50%) scale(1.12); } }
+@media (max-width: 480px) { .track { min-height: 350px; } .bike { bottom: 25px; font-size: 46px; } .pickup { width: 42px; height: 42px; } }
